@@ -1,1 +1,8 @@
 .env
+.env*
+.idea
+.vscode
+.DS_Store
+db/postgresql/*
+db/redis/*
+certbot/*
