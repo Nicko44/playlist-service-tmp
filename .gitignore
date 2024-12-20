@@ -6,3 +6,5 @@
 db/postgresql/*
 db/redis/*
 certbot/*
+logs/access.log
+logs/error.log
