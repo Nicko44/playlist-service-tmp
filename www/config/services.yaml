@@ -1,0 +1,58 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    DEFAULT_COUNTRY: 'DE'
+    DEFAULT_PLATFORM: ''
+    DEFAULT_USER_GROUP: 4
+    DEFAULT_LANGUAGE: 'ru'
+    DEFAULT_ADULT: false
+
+    TRUSTED_RESOLUTIONS: 'ld,sd,hd,fullhd,fullhd50fps'
+
+    PREFIX_IMAGE_URL: 'http://ott.watch/images/'
+    PREFIX_IMAGE_APP_URL: 'myotter.in/images/'
+    PREFIX_IMAGE_APP_SECURE_URL: 'router.turbo-stream.net/images/'
+
+    VIDZONE_BASE_URL: 'https://766800.live.tvstitch.com/stream.m3u8'
+    SCTE35_AVAILABLE_CHANNELS: '445,447,449,456'
+    TEST_KEY: '%env(TEST_KEY)%'
+
+    TEMPLATE_STREAM_URL: 'http://ott.watch/stream/{PROVIDE_KEY}/{CHANNEL_ID}.m3u8'
+    TEMPLATE_STREAM_APP_URL: 'myotter.in/stream/{PROVIDE_KEY}/{CHANNEL_ID}.m3u8'
+    TEMPLATE_STREAM_APP_SECURE_URL: 'router.turbo-stream.net/stream/{PROVIDE_KEY}/{CHANNEL_ID}.m3u8'
+    TEMPLATE_STREAM_DUNE_URL: 'http://ts://ott.watch/stream/{UID}/{CHANNEL_ID}.m3u8'
+    TEMPLATE_CONSTANT_CHANNEL: '{CHANNEL_ID}'
+    TEMPLATE_CONSTANT_KEY: '{PROVIDE_KEY}'
+
+    URL_EPG: 'https://epg.ottservice.org/epg'
+    URL_USERDATA: 'https://rest.ottservice.org/v3/subscriptions/list'
+    URL_KEYGROUP: 'https://rest.ottclub.org/service/hash/'
+    URL_EPG_XML: 'https://epg.ottservice.org/download/epg.xml.gz'
+    URL_EPG_XML_SIPTV: 'https://epg.ottservice.org/download/epg.xml.gz'
+    URL_EPG_XML_SSIPTV: 'https://epg.ottservice.org/epg/ssiptv.xml'
+    URL_EPG_OTTPLAYER: 'http://ott.watch/apid/'
+
+    PATH_GEOIP: '/media/GeoLite2-Country.mmdb'
+
+    JWT_SECRET: '%env(JWT_SECRET)%'
+    JWT_PUBLIC_CERT: '%env(file:JWT_PUBLIC_CERT)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones

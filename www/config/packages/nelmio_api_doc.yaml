@@ -1,0 +1,23 @@
+nelmio_api_doc:
+    use_validation_groups: true
+    documentation:
+        servers:
+            - url: '%env(resolve:BASE_URL)%'
+              description: API
+        info:
+            title: Playlist Service
+            description: App for storage channels info & generating playlists
+            version: 1.0.0
+        components:
+            securitySchemes:
+                X-AUTH-TOKEN:
+                    type: apiKey
+                    in: header
+                    name: X-AUTH-TOKEN
+                Authorization:
+                    type: apiKey
+                    in: header
+                    name: Authorization
+                    description: 'Value: Bearer {jwt}'
+
+                
